@@ -1,4 +1,36 @@
 [[package]]
+name = "beautifulsoup4"
+version = "4.4.0"
+description = "Screen-scraping library"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
+name = "click"
+version = "3.3"
+description = "A simple wrapper around optparse for powerful command line utilities."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "inexactsearch"
+version = "1.0.2"
+description = "Fuzzy String search algorithm using Soundex for Indian language"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+silpa_common = ">=0.3"
+soundex = ">=1.0"
+
+[[package]]
 name = "numpy"
 version = "1.22.2"
 description = "NumPy is the fundamental package for array computing with Python."
@@ -6,12 +38,102 @@ category = "main"
 optional = false
 python-versions = ">=3.8"
 
+[[package]]
+name = "pyenchant"
+version = "1.6.6"
+description = "Python bindings for the Enchant spellchecking system"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "repoze.lru"
+version = "0.7"
+description = "A tiny LRU cache implementation and decorator"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+docs = ["sphinx"]
+testing = ["coverage", "nose"]
+
+[[package]]
+name = "requests"
+version = "2.7.0"
+description = "Python HTTP for Humans."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+security = ["pyopenssl", "ndg-httpsclient", "pyasn1"]
+
+[[package]]
+name = "silpa-common"
+version = "0.3"
+description = "Common functions for SILPA and related modules"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+"repoze.lru" = "*"
+
+[[package]]
+name = "sitechantment"
+version = "0.1.0"
+description = "Check a site for spelling errors"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+beautifulsoup4 = "4.4.0"
+click = "3.3"
+pyenchant = "1.6.6"
+requests = "2.7.0"
+
+[[package]]
+name = "soundex"
+version = "1.1.3"
+description = "Soundex algorith implementation for English and Indian languages"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+silpa_common = ">=0.3"
+
+[[package]]
+name = "spellchecker"
+version = "0.4"
+description = "Indian Language Spellchecker Library"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+inexactsearch = "*"
+
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "aff373253c7dfba5ffb39abcd42622aff6370f3677a7bbbceff4e477ed202c9d"
+content-hash = "52fdb60ba7bbbf3b2e8d1f234139179319bc01c4ba102ae58f68dc7e1e9f3c37"
 
 [metadata.files]
+beautifulsoup4 = [
+    {file = "beautifulsoup4-4.4.0-py2-none-any.whl", hash = "sha256:b702721f8722c94fbd2fbdfb42183c4b5b3d8871186b92a8898e2dfe4869aadb"},
+    {file = "beautifulsoup4-4.4.0-py3-none-any.whl", hash = "sha256:a43204aaee0ef590a6073470f094564ddef6aca5f68c143c99262f8b4923af8c"},
+    {file = "beautifulsoup4-4.4.0.tar.gz", hash = "sha256:fad91da88f69438b9ba939ab1b2cabaa31b1d914f1cccb4bb157a993ed2917f6"},
+]
+click = [
+    {file = "click-3.3-py2.py3-none-any.whl", hash = "sha256:c9972f4d2b80575bb9112500cfec750eaf4f04e07abda4b2c44e453cde65ee77"},
+    {file = "click-3.3.tar.gz", hash = "sha256:f79c8c04d7eb50071bcad67fd23f3c10fab6c72d56857adf848367806845d6e5"},
+]
+inexactsearch = [
+    {file = "inexactsearch-1.0.2.tar.gz", hash = "sha256:b7df09c46e1ea73996449ceb4df265483e4dc6b61dac2ea4df6f2e5ad8d53b75"},
+]
 numpy = [
     {file = "numpy-1.22.2-cp310-cp310-macosx_10_14_x86_64.whl", hash = "sha256:515a8b6edbb904594685da6e176ac9fbea8f73a5ebae947281de6613e27f1956"},
     {file = "numpy-1.22.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:76a4f9bce0278becc2da7da3b8ef854bed41a991f4226911a24a9711baad672c"},
@@ -32,4 +154,31 @@ numpy = [
     {file = "numpy-1.22.2-cp39-cp39-win_amd64.whl", hash = "sha256:59153979d60f5bfe9e4c00e401e24dfe0469ef8da6d68247439d3278f30a180f"},
     {file = "numpy-1.22.2-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4a176959b6e7e00b5a0d6f549a479f869829bfd8150282c590deee6d099bbb6e"},
     {file = "numpy-1.22.2.zip", hash = "sha256:076aee5a3763d41da6bef9565fdf3cb987606f567cd8b104aded2b38b7b47abf"},
+]
+pyenchant = [
+    {file = "pyenchant-1.6.6-py2.py3-none-any.whl", hash = "sha256:2e573566c62eea455b2447b90accc61efed1d2a825dd3dc9285ab914baae92b3"},
+    {file = "pyenchant-1.6.6-py2.py3.cp27.cp26.cp32.cp33.cp34.pp27-none-macosx_10_6_intel.macosx_10_9_intel.whl", hash = "sha256:66f45e71d52e159381a1177b63e25eb419a0acb49b18a7197c0be8110567b8d1"},
+    {file = "pyenchant-1.6.6-py2.py3.cp27.cp26.cp32.cp33.cp34.pp27-none-win32.whl", hash = "sha256:dd6ec7351ee93b65bd3c0bf9b1dbc143d2837cffabf8371bda0d589f471679bc"},
+    {file = "pyenchant-1.6.6.tar.gz", hash = "sha256:25c9d2667d512f8fc4410465fdd2e868377ca07eb3d56e2b6e534a86281d64d3"},
+    {file = "pyenchant-1.6.6.win32.exe", hash = "sha256:fe5fc3e2577d38e2adc0d2c70a92c1e11d4e450f40465a7cf649a5a250b254b9"},
+]
+"repoze.lru" = [
+    {file = "repoze.lru-0.7-py3-none-any.whl", hash = "sha256:f77bf0e1096ea445beadd35f3479c5cff2aa1efe604a133e67150bc8630a62ea"},
+    {file = "repoze.lru-0.7.tar.gz", hash = "sha256:0429a75e19380e4ed50c0694e26ac8819b4ea7851ee1fc7583c8572db80aff77"},
+]
+requests = [
+    {file = "requests-2.7.0-py2.py3-none-any.whl", hash = "sha256:20f976cdce02a42b69ce80e9e03897a51814b36d448b37288546086ebc473146"},
+    {file = "requests-2.7.0.tar.gz", hash = "sha256:398a3db6d61899d25fd4a06c6ca12051b0ce171d705decd7ed5511517b4bb93d"},
+]
+silpa-common = [
+    {file = "silpa_common-0.3.tar.gz", hash = "sha256:d4a4366193fd606fdcbf6d6e996a57a8bed9ff54ec8e2f798d2b7bc885dde3fd"},
+]
+sitechantment = [
+    {file = "sitechantment-0.1.0.tar.gz", hash = "sha256:92b5ef1e5a11dd22c4d161dba724b71ea66bc23bc6a43e6bb42849d1f58bcf15"},
+]
+soundex = [
+    {file = "soundex-1.1.3.tar.gz", hash = "sha256:f837692afab3dc4f0132a36d8e8a8384f6ac8349fffdf5103291c3d1c2d48ad3"},
+]
+spellchecker = [
+    {file = "spellchecker-0.4.tar.gz", hash = "sha256:7ebe5480641d2fa555e4a9d0592e6f6866d095c37c5563e38a349f8ce26358c7"},
 ]

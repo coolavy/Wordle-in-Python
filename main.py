@@ -5,6 +5,7 @@ from collections import defaultdict
 import random
 from word_list import words
 from tkinter import messagebox as mb
+#from spellchecker import SpellChecker
 
 #Defining variables needed later on.
 today_word = random.choice(words)
@@ -12,7 +13,7 @@ print(today_word)
 wrow = 6
 wcolumn = 5
 track_row = 0
-
+#checking = SpellChecker()
 #--------------------------------------------------------
 #Defining a few functions and coding the word part of the day.
 def next_row():
@@ -75,9 +76,9 @@ def check_word():
   entered_word = ""
   for inp in current_entries:
     entered_word += inp.get().lower()
-  if entered_word not in words:
-    mb.showinfo('Invalid word', 'Not a valid word!')
-    return
+  # if checking.unknown(entered_word) == entered_word:
+  #   mb.showinfo('Invalid word', 'Not a valid word!')
+  #   return
     
   all_correct_entries = True
   ## now check all the entered text
@@ -155,4 +156,4 @@ for row in range(wrow):
     if row == 0 and col == 0:
       entry.focus_set()
     entry.icursor(0)
-root.mainloop()
+# root.mainloop()
