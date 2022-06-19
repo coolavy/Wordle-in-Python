@@ -8,7 +8,7 @@ from tkinter import messagebox as mb
 
 #Defining variables needed later on.
 today_word = random.choice(words)
-#print(today_word)
+print(today_word)
 wrow = 6
 wcolumn = 5
 track_row = 0
@@ -18,7 +18,7 @@ track_row = 0
 def next_row():
   global track_row
   track_row = track_row + 1
-  next_row = entry_list[track_row]
+  next_row = entry_dict[track_row]
   ## also enable row
   for inp in next_row:
     inp.config(state= "normal")
@@ -33,7 +33,7 @@ def caps(event):
     selected.delete(0,END)
     selected.insert(0,current_text.upper())
     if selected.col + 1 < wcolumn:
-      next_entry = entry_list[track_row][selected.col + 1]
+      next_entry = entry_dict[track_row][selected.col + 1]
       next_entry.focus_set()
             
 def enter_pressed(event):
@@ -51,16 +51,25 @@ def delete_pressed(event):
 
   ## check if previous entry can be cleaned 
   if selected.col - 1 >= 0:
-    last_entry = entry_list[track_row][selected.col - 1]
+    last_entry = entry_dict[track_row][selected.col - 1]
     clear(last_entry)
     last_entry.focus_set()
+
+def reset_grid():
+  global track_row
+  track_row = 0
+  for r_entries in entry_dict.values():
+    for c_entry in r_entries:
+      c_entry.config(state= "normal")
+      c_entry.delete(0,END)
+  entry_dict[0][0].focus_set()
   
 def check_word():
-  current_entries = entry_list[track_row]
-  index = 0
+  current_entries = entry_dict[track_row]
   ## check if all the enteries have some text
   for inp in current_entries:
       if not inp.get():
+        mb.showinfo("Fill all", "Please fill all the sections.")
         return
   ## check if its a valid word
   entered_word = ""
@@ -72,24 +81,26 @@ def check_word():
     
   all_correct_entries = True
   ## now check all the entered text
-  for inp in current_entries:
+  for index, inp in enumerate(current_entries):
       current_value = inp.get().lower()
+      ## when letter matches
       if current_value == today_word[index]:
         inp.configure({"disabledbackground": "lightgreen",                                 "disabledforeground" : "black",
                       })
       else:
         all_correct_entries = False
+        ## check if its in the today's word
         if current_value in today_word:
           inp.configure({"disabledbackground": "lightyellow", 
                          "disabledforeground" : "black",
                         })
         else:
+          # letter is not in the word at all
           inp.configure({"disabledbackground": "lightgrey",
                          "disabledforeground" : "black",
                         })
-      ## make text bold
+      ## make text bold & disable
       inp.configure(font=font.Font(weight="bold"))
-      index = index + 1
       inp.config(state= "disabled")
 
   ## if all the entries are not correct then move to next row
@@ -98,7 +109,7 @@ def check_word():
       next_row()
     else:
       mb.showerror("TryAgain", "Sorry, Try Again")
-      #print("Try Again !!!")
+      reset_grid()
   else:
     mb.showinfo('YouWon', 'Congratulations! You won!')
     #print("You won !!!")
@@ -110,7 +121,7 @@ root.title("Wordle")
 root.geometry("550x550")
 root.resizable(0, 0)
 
-entry_list = defaultdict(list)
+entry_dict = defaultdict(list)
 
 for row in range(wrow):
   for col in range(wcolumn):
@@ -132,7 +143,7 @@ for row in range(wrow):
     ## when backspace is hit
     entry.bind("<BackSpace>", delete_pressed)
     
-    entry_list[row].append(entry)
+    entry_dict[row].append(entry)
 
     entry.grid(row=row, column=col + 1, padx=10,
                 pady=10, ipady=5)
