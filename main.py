@@ -1,5 +1,5 @@
 #importing needed libraries
-from tkinter import *
+from tkinter import Entry, Tk, END
 import tkinter.font as font
 from collections import defaultdict
 import random
