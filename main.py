@@ -129,6 +129,7 @@ for row in range(wrow):
     entry.bind("<KeyRelease>", caps)
     ## when Enter is hit
     entry.bind("<Return>", enter_pressed)
+    ## when backspace is hit
     entry.bind("<BackSpace>", delete_pressed)
     
     entry_list[row].append(entry)
